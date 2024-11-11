@@ -58,3 +58,6 @@ public:
         return false;
     }
 };
+
+// Optimal solution requires specialized knowledge so I will not implement it. My code works but not upto the time limit that Leetcode wants it to be. But I did hit O(1) space complexity tho.
+
