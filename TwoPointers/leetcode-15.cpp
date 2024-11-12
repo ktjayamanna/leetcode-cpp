@@ -24,9 +24,27 @@ public:
                 
                 // Compare the sum with the value at the middle pointer.
                 if (sum_negated == nums[middle]) {
-                    // Store the triplet indices and corresponding values.
-                    vector<int> triplet = {nums[left], nums[middle], nums[right]};
-                    sort(triplet.begin(), triplet.end());
+                    // Define an array to hold the sorted triplet.
+                    vector<int> triplet(3);
+                    
+                    // Since nums[left] <= nums[right], we compare nums[middle] with them.
+                    if (nums[middle] <= nums[left]) {
+                        // Middle is smallest.
+                        triplet[0] = nums[middle];
+                        triplet[1] = nums[left];
+                        triplet[2] = nums[right];
+                    } else if (nums[middle] >= nums[right]) {
+                        // Middle is largest.
+                        triplet[0] = nums[left];
+                        triplet[1] = nums[right];
+                        triplet[2] = nums[middle];
+                    } else {
+                        // Middle is between left and right.
+                        triplet[0] = nums[left];
+                        triplet[1] = nums[middle];
+                        triplet[2] = nums[right];
+                    }
+                    
                     unique_triplets.insert(triplet);
                     
                     // Move the pointers inward since we found a valid triplet.
