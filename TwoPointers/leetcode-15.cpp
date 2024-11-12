@@ -1,46 +1,48 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        vector<vector<int>> result;
-        int n = nums.size();
-
-        // Step 1: Sort the array in increasing order
+        // Step 1: Sort the array in increasing order.
         sort(nums.begin(), nums.end());
-
-        // Initialize a set to store unique triplets as strings
-        unordered_set<string> tripletSet;
-
-        // Middle pointer starts from index 1 to n - 2
-        for (int middle = 1; middle < n - 1; ++middle) {
+        int n = nums.size();
+        
+        // Step 2: Initialize a set to store unique triplets.
+        set<vector<int>> unique_triplets;
+        
+        // Step 3: Iterate through the array with the middle pointer.
+        for (int middle = 0; middle < n; ++middle) {
             int left = 0;
             int right = n - 1;
-
-            while (left < middle && right > middle) {
-                // Negate the values at left and right pointers
-                int negLeft = -nums[left];
-                int negRight = -nums[right];
-                int sumNegLR = negLeft + negRight;
-
-                // Compare the sum to the value at the middle pointer
-                if (sumNegLR == nums[middle]) {
-                    // Create a unique key for the triplet
-                    string key = to_string(nums[left]) + "," + to_string(nums[middle]) + "," + to_string(nums[right]);
-                    if (tripletSet.find(key) == tripletSet.end()) {
-                        tripletSet.insert(key);
-                        result.push_back({nums[left], nums[middle], nums[right]});
-                    }
-                    // Move the middle pointer to the next index
-                    break; // As per your description, we move to the next middle
-                } else if (sumNegLR < nums[middle]) {
-                    // If sum is smaller, move the right pointer to the left
+            
+            // Step 4: Use two pointers to find matching triplets.
+            while (left < right) {
+                // Skip if pointers overlap with the middle pointer.
+                if (left == middle) { ++left; continue; }
+                if (right == middle) { --right; continue; }
+                
+                // Negate the values at the left and right pointers and sum them.
+                int sum_negated = -nums[left] - nums[right];
+                
+                // Compare the sum with the value at the middle pointer.
+                if (sum_negated == nums[middle]) {
+                    // Store the triplet indices and corresponding values.
+                    vector<int> triplet = {nums[left], nums[middle], nums[right]};
+                    sort(triplet.begin(), triplet.end());
+                    unique_triplets.insert(triplet);
+                    
+                    // Move the pointers inward since we found a valid triplet.
+                    ++left;
+                    --right;
+                } else if (sum_negated < nums[middle]) {
+                    // If sum is smaller, move the right pointer to the left.
                     --right;
                 } else {
-                    // If sum is larger, move the left pointer to the right
+                    // If sum is larger, move the left pointer to the right.
                     ++left;
                 }
             }
         }
-
-        return result;
+        
+        // Step 5: Convert the set to a vector of vectors and return.
+        return vector<vector<int>>(unique_triplets.begin(), unique_triplets.end());
     }
 };
