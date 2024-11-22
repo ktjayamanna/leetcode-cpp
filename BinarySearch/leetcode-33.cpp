@@ -23,7 +23,7 @@ public:
             int next = (mid + 1) % nums.size();
             int prev = (mid - 1 + nums.size()) % nums.size();
             if (nums[mid] <= nums[next] && nums[mid] <= nums[prev])
-                return mid; // Pivot found
+                return mid; // Pivot found (Pivot is the smallest element in this implementation)
             else if (nums[mid] <= nums[right])
                 right = mid - 1;
             else if (nums[mid] >= nums[left])
