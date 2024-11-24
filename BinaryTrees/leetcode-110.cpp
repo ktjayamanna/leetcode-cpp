@@ -22,7 +22,7 @@ public:
 
     int height(TreeNode* root) {
         if (!root)
-            return 0; // Base case: return 0 for null nodes
+            return -1;
         int left_height = height(root->left);
         int right_height = height(root->right);
         bool gap = abs(left_height - right_height) > 1; // Check if the difference is greater than 0
