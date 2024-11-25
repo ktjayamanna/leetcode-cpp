@@ -1,10 +1,3 @@
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
-
 #for a given tree: diameter = (1 + left sub tree height) + (1 + right sub tree height)
 #find the diameter for every tree and update max_diameter
 # How do we find the height? 
@@ -13,6 +6,13 @@
     #height = -1 for empty tree
 
 import Optional
+
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
