@@ -12,3 +12,4 @@ This is the plan:
 Cool Patterns:
 - How to utilize index decrement of a linear data structure to write recursively: recursion/traversing_linear_with_idx.py
 - How to utilize default arguments to avoid reinitialization in recursive functions: recursion/default_argument.py
+- How to apply recursion for Linkedlist operations.
