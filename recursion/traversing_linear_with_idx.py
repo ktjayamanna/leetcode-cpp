@@ -9,7 +9,7 @@ def get_node_value(head, index):
 
 
 
-# Iterative version for contextdef get_node_value(head, index):
+# Iterative version for context
 def get_node_value(head, index):
   current = head
   count = 0
