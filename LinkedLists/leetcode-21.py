@@ -14,17 +14,7 @@ class Solution:
         ptr_a = list1
         ptr_b = list2
         while ptr_a and ptr_b:
-            if ptr_a.val == ptr_b.val:
-                current.next = ptr_a
-                current = current.next
-                current.next = ptr_b
-                current = current.next
-
-                ptr_a = ptr_a.next
-                ptr_b = ptr_b.next
-                current = current.next
-            
-            elif ptr_a.val < ptr_b.val:
+            if ptr_a.val < ptr_b.val:
                 current.next = ptr_a
                 ptr_a = ptr_a.next
                 current = current.next
