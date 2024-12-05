@@ -17,3 +17,7 @@ Cool Patterns:
 
 Common Ops:
 - Number to digits: common_ops/convert_num_to_digits.py
+
+
+Python Tricks:
+- Frequency Counter: python_tricks/frequency_counter.py
