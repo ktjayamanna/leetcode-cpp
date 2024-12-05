@@ -13,4 +13,4 @@ Cool Patterns:
 - How to utilize index decrement of a linear data structure to write recursively: recursion/traversing_linear_with_idx.py
 - How to utilize default arguments to avoid reinitialization in recursive functions: recursion/default_argument.py
 - How to apply recursion for Linkedlist operations: recursion/linkedlist_ops.py
-- How to shrink a linear input using recursion: recursion/create_linkedlist.py
+- How to iterate using recursion: recursion/create_linkedlist.py
