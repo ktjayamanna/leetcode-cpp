@@ -14,3 +14,6 @@ Cool Patterns:
 - How to utilize default arguments to avoid reinitialization in recursive functions: recursion/default_argument.py
 - How to apply recursion for Linkedlist operations: recursion/linkedlist_ops.py
 - How to iterate using recursion: recursion/create_linkedlist.py
+
+Common Ops:
+- Number to digits: common_ops/convert_num_to_digits.py
