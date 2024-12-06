@@ -7,11 +7,11 @@
 from collections import deque
 
 def breadth_first_values(root):
-  queue = deque([root])
   values = []
   if not root:
       return values
-
+  queue = deque([root])
+  
   while queue:
       curr = queue.popleft()
       values.append(curr.value)
