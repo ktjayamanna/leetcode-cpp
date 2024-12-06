@@ -10,17 +10,17 @@ def breadth_first_values(root):
   queue = deque([root])
   values = []
   if not root:
-    return values
-
-  while True:
-    curr = queue.popleft()
-    values.append(curr.val)
-    if curr.left:
-      queue.append(curr.left)
-    if curr.right:
-      queue.append(curr.right)
-    if len(queue) == 0:
       return values
+
+  while queue:
+      curr = queue.popleft()
+      values.append(curr.value)
+      if curr.left:
+          queue.append(curr.left)
+      if curr.right:
+          queue.append(curr.right)
+
+  return values
 
     
     
