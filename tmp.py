@@ -1,7 +1,26 @@
-from collections import OrderedDict
+def dfs(root):
+    if not root:
+        []
+    left = dfs(root.left)
+    right = dfs(root.right)
+    return [root.val] + left + right
 
 
-target = 9
-numbers = [2, 7, 11, 15]
 
-freq = dict([target - x for x in numbers], range(0, len(numbers)))
+from collections import deque
+
+def bfs(root):
+    if not root:
+        return []
+    queue = deque([root])
+    result = []
+    while queue:
+        current = queue.popleft()
+        result.append(current.val)
+        if current.left:
+            result.append(current.left)
+        if current.right:
+            result.append(current.right)
+    return result
+
+    
