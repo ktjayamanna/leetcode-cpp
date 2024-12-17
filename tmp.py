@@ -1,52 +1,62 @@
-'''
-Write a function, semesters_required, that takes in a number of courses (n) and a list of prerequisites as arguments. Courses have ids ranging from 0 through n - 1. A single prerequisite of (A, B) means that course A must be taken before course B. Return the minimum number of semesters required to complete all n courses. There is no limit on how many courses you can take in a single semester, as long as the prerequisites of a course are satisfied before taking it.
+def best_bridge(grid):
+  start_row, start_col = find_starting_point(grid)
+  main_island_nodes = dict()
+  dfs(grid, start_row, start_col, main_island_nodes)
+  for node in main_island_nodes.keys():
+    start_row, start_col = node
+    main_island_nodes[node] = bfs(grid, start_row, start_col, main_island_nodes)
+  print(main_island_nodes)
+  return min(main_island_nodes.values())
 
-Note that given prerequisite (A, B), you cannot take course A and course B concurrently in the same semester. You must take A in some semester before B.
+def find_starting_point(grid):
+  for i in range(len(grid)):
+    for j in range(len(grid[0])):
+      if grid[i][j] == "L":
+        return (i, j)
 
-You can assume that it is possible to eventually complete all courses.
+def check_bounds(grid, row, col):
+  return 0 <= row < len(grid) and 0 <= col <  len(grid[0])
 
-----------------------------------------------------------------------------------------------
-Input: takes in a number of courses (n) and a list of prerequisites as arguments
-Input Type: int, [(int, int), (int, int)...(int, int)]
-Output: Return the minimum number of semesters required to complete all n courses
-Output tYpe: int
-Interesting things: 
-- Courses have ids ranging from 0 through n - 1
-- A single prerequisite of (A, B) means that course A must be taken before course B
-- no limit on how many courses you can take in a single semester, as long as the prerequisites of a course are satisfied before taking it
-- given prerequisite (A, B), you cannot take course A and course B concurrently in the same semester. You must take A in some semester before B.
-- assume that it is possible to eventually complete all courses
---------------------------------------------------------------------------------------------------------------------------------------------------------
-'''
+
+def dfs(grid, row, col, main_island_nodes):
+  if not check_bounds(grid, row, col) or (row, col) in main_island_nodes or grid[row][col] == "W":
+    return None
+  main_island_nodes[(row, col)] = 0
+  directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+  for dr, dc in directions:
+    new_row = row + dr
+    new_col = col + dc
+    dfs(grid, new_row, new_col, main_island_nodes)  
+  return None
+
 
 from collections import deque
 
-def semesters_required(num_courses, prereqs):
-  graph = build_graph(prereqs, num_courses)
-  start = list(graph.keys())[0]
-  num_semesters = bfs(graph, start)
-  return num_semesters
-
-
-def build_graph(prereqs, num_courses):
-  graph = {key: [] for key in range(num_courses)}
-  for x, y in prereqs:
-    if x  in graph:
-      graph[x].append(y)
-  return graph
-
-def bfs(graph, start):
-  queue = deque([start])
-  num_levels = 1
+def bfs(grid, row, col, main_island_nodes):
+  queue = deque([(row, col, 0)])
+  visited = {(row, col)}
   while queue:
-    level_size = len(queue)
-    for _ in range(level_size):
-      current = queue.popleft()
-      for neighbor in graph[current]:
-        queue.append(neighbor)
-      num_levels += 1
-  return num_levels
+    print(queue)
+    row, col, distance = queue.popleft()
+    if grid[row][col] == 'L' and (row, col) not in main_island_nodes:
+      return distance - 1
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+    for dr, dc in directions:
+      new_row = row + dr
+      new_col = col + dc
+      if check_bounds(grid, new_row, new_col) and (new_row, new_col) not in visited:
+        visited.add((new_row, new_col))
+        queue.append((new_row, new_col, distance + 1))
 
 
-      
+grid = [
+  ["W", "W", "W", "L", "L"],
+  ["L", "L", "W", "W", "L"],
+  ["L", "L", "L", "W", "L"],
+  ["W", "L", "W", "W", "W"],
+  ["W", "W", "W", "W", "W"],
+  ["W", "W", "W", "W", "W"],
+]
+print(best_bridge(grid)) # -> 1
 
+    
