@@ -29,15 +29,15 @@ def dfs_dag(graph, start, visited=set(), result=None):
 
 # In an **undirected acyclic graph** (tree), we need to pass the `parent` node to avoid traversing back to it since there are no explicit directions.
 
-def dfs_tree(graph, start, parent=None, visited=set(), result=None):
-    if result is None:
-        result = []
-    visited.add(start)
-    for neighbor in graph[start]:
-        if neighbor != parent:  # Avoid going back to the parent
-            dfs_tree(graph, neighbor, start, visited, result)
-    result.append(start)  # Post-order processing
-    return result
+def dfs_tree(root):
+  if not root:
+    return []
+  
+  values = [root.val]
+  for child in root.children:
+    values += dfs_tree(child)
+  return values
+
 
 
 ### 3. **Directed Cyclic Graph**
