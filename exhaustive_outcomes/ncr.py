@@ -1,6 +1,8 @@
 def ncr(items, r):
-  if r > len(items): return []
-  if r == 0: return [[]]
+  if len(items) < r: 
+    return []
+  if r == 0: 
+    return [[]]
   first = items[0]
   with_first = []
   without_first = []

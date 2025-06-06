@@ -1,5 +1,6 @@
 def subsets(elements):
-  if not elements: return [[]]
+  if not elements: 
+    return [[]]
   first = elements[0]
   with_first = []
   without_first = []

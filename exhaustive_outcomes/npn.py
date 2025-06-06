@@ -1,5 +1,6 @@
 def npn(items):
-  if not items: return [[]]
+  if not items: 
+    return [[]]
   first = items[0]
   out = []
   for perm in npn(items[1:]):
