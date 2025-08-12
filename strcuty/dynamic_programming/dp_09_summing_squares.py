@@ -45,7 +45,7 @@ def summing_squares(n, memo = None):
   min_sq = float('inf')
   for base in range(1, n + 1):
     sq = base ** 2
-    if sq < n:
+    if sq <= n:
       min_sq = min(
         summing_squares(n - sq, memo),
         min_sq
