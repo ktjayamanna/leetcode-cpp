@@ -18,6 +18,12 @@ CONSTRAINTS:
 ================================================================================
 [Add constraints here]
 
+NOTES:
+================================================================================
+This works well regardless if the same nodes with different order make up the path (amount). 
+In other words, whether you consider order matters or does not matter, this solution works.
+There can be other problems where to be considered a unique path, you can't have same nodes with different order in two paths. 
+For those problems, you need to pass idx to recursive function to exhaust all possibilities for the indexed element.
 """
 
 # SOLUTION:
