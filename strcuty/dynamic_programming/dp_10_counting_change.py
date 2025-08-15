@@ -36,30 +36,44 @@ CONSTRAINTS:
 ================================================================================
 [Add constraints here]
 
+COMPLEXITY:
+================================================================================
+
+    a = amount
+    c = # coins
+    Time: O(a*c)
+    Space: O(a*c)
+
+
 """
 
 # SOLUTION:
 # ================================================================================
-def counting_change(amount, coins, i = 0, memo = None):
-  key = (i, amount)
-  if memo is None:
-    memo = dict()
+def counting_change(amount, coins):
+  return _counting_change(amount, coins, 0, {})
+
+def _counting_change(amount, coins, i, memo):
+  key = (amount, i)
   if key in memo:
     return memo[key]
+  
   if amount == 0:
     return 1
+  
   if i == len(coins):
     return 0
-  n_ways = 0
-  for qty in range(0, amount + 1):
-    value = qty * coins[i]
-    if value <= amount:
-      n_ways += counting_change(amount - value, coins, i + 1, memo)
-    else:
-      break
-  memo[key] = n_ways
-  return n_ways
   
+  coin = coins[i]
+  
+  total_count = 0
+  for qty in range(0, (amount // coin) + 1):
+    remainder = amount - (qty * coin)
+    total_count += _counting_change(remainder, coins, i + 1, memo)
+    
+  memo[key] = total_count
+  return total_count
+
+
       
   
 
