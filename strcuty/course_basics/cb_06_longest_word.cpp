@@ -4,10 +4,9 @@
 /*
 PROBLEM DESCRIPTION:
 ================================================================================
-Write a function longest_word that takes in an array of words as an argument.
-The function should return the longest word in the array.
+Write a function, longestWord, that takes in a sentence string as an argument. The function should return the longest word in the sentence. If there is a tie, return the word that occurs later in the sentence.
 
-If there are ties, return the word that appears earlier in the array.
+You can assume that the sentence is non-empty.
 
 
 EXAMPLES:
@@ -25,10 +24,41 @@ CONSTRAINTS:
 
 */
 
-#include <iostream>
-#include <vector>
-#include <string>
-
 // SOLUTION:
 // ================================================================================
-// [Add your C++ solution here]
+
+
+#include <string>
+#include <vector>
+#include <iostream>
+#include <cmath>
+
+std::vector<std::string> split(const std::string& s, char delimiter){
+  std::vector<std::string> tokens;
+  size_t start = 0, end;
+  while ((end = s.find(delimiter, start)) != std::string::npos){
+    tokens.push_back(s.substr(start, end - start));
+    start = end + 1;
+  }
+  tokens.push_back(s.substr(start));
+  return tokens;
+}
+
+std::string longestWord(std::string sentence) {
+  auto max_size = -INFINITY;
+  std::string longest_word = "";
+  auto words = split(sentence, ' ');
+  for (auto& word : words){
+    if (word.size() >= max_size){
+      max_size = word.size();
+      longest_word = word;
+    }
+  }
+  return longest_word;
+}
+
+void run() {
+  // this function behaves as `main()` for the 'run' command
+  // you may sandbox in this function, but should not remove it
+
+}
