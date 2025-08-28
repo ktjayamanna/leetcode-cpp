@@ -4,31 +4,40 @@
 """
 PROBLEM DESCRIPTION:
 ================================================================================
-Write a function reverseSomeChars that takes in a string and a number k as arguments.
-The function should return a string where the first k characters are reversed.
-
-If k is greater than the length of the string, reverse the entire string.
+Write a function, reverse_some_chars, that takes in string and an list of characters. 
+The function should return the string with the order of the given characters in reverse.
 
 
 EXAMPLES:
 ================================================================================
-reverseSomeChars("hello world", 5) # -> "olleh world"
-reverseSomeChars("abcdefg", 3) # -> "cbadefg"
-reverseSomeChars("cat", 10) # -> "tac"
-reverseSomeChars("", 4) # -> ""
+reverse_some_chars("computer", ["a", "e", "i", "o", "u"]) # -> 'cemputor'
+
 
 
 CONSTRAINTS:
 ================================================================================
-- 0 <= k <= 10^5
-- 0 <= len(string) <= 10^5
-- String contains only lowercase letters and spaces
-
-Time: O(n) where n is the length of the string
-Space: O(k) for the stack to store k characters
+n = length of string
+m = length of chars list
+Time: O(n + m)
+Space: O(n + m)
 
 """
 
 # SOLUTION:
 # ================================================================================
-# [Add your Python solution here]
+def reverse_some_chars(s, chars):
+  char_set = set(chars)
+  stack = []
+  for ch in s:
+    if ch in char_set:
+      stack.append(ch)
+
+  result = []
+  for ch in s:
+    if ch in char_set:
+      result.append(stack.pop())
+    else:
+      result.append(ch)
+
+  return "".join(result)
+
