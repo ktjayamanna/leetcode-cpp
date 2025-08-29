@@ -4,33 +4,64 @@
 """
 PROBLEM DESCRIPTION:
 ================================================================================
-Write a function pairedParentheses that takes in a string as an argument.
-The function should return a boolean indicating whether or not the string has well-formed parentheses.
+Write a function, paired_parentheses, that takes in a string as an argument. The function should return a boolean indicating whether or not the string has well-formed parentheses.
 
-You may assume the string contains only parentheses, no other characters.
+You may assume the string contains only alphabetic characters, '(', or ')'.
 
-
-EXAMPLES:
+Complexity:
 ================================================================================
-pairedParentheses("(david)((abby))") # -> True
-pairedParentheses("()rose(jeff") # -> False
-pairedParentheses(")(") # -> False
-pairedParentheses("()") # -> True
-pairedParentheses("(((pokemon)))") # -> True
-pairedParentheses("(())(water)()") # -> True
-pairedParentheses("((()") # -> False
-
-
-CONSTRAINTS:
-================================================================================
-- String contains only '(' and ')' characters
-- 0 <= len(string) <= 10^5
-
-Time: O(n) where n is the length of the string
-Space: O(n) in worst case for the stack
+n = length of string
+Time: O(n)
+Space: O(1)
 
 """
 
 # SOLUTION:
 # ================================================================================
-# [Add your Python solution here]
+def paired_parentheses(string):
+  count = 0
+  
+  for char in string:
+    if char == '(':
+      count += 1
+    elif char == ')':
+      if count == 0:
+        return False
+      count -= 1
+      
+  return count == 0
+
+
+
+# TESTS:
+# ================================================================================
+def test_paired_parentheses():
+    """Test cases for paired parentheses function"""
+
+    # Test case 1: Nested parentheses with names
+    assert paired_parentheses("(david)((abby))") == True
+
+    # Test case 2: Unmatched opening parenthesis
+    assert paired_parentheses("()rose(jeff") == False
+
+    # Test case 3: Closing before opening
+    assert paired_parentheses(")(") == False
+
+    # Test case 4: Simple balanced pair
+    assert paired_parentheses("()") == True
+
+    # Test case 5: Multiple nested parentheses
+    assert paired_parentheses("(((pokemon)))") == True
+
+    # Test case 6: Multiple balanced groups
+    assert paired_parentheses("(())(water)()") == True
+
+    # Test case 7: Unmatched opening parentheses
+    assert paired_parentheses("((()") == False
+
+    print("All tests passed!")
+
+
+if __name__ == "__main__":
+    # Run tests when file is executed directly
+    test_paired_parentheses()
