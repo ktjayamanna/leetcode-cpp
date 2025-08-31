@@ -4,32 +4,52 @@
 """
 PROBLEM DESCRIPTION:
 ================================================================================
-Write a function befittingBrackets that takes in a string as an argument.
-The function should return a boolean indicating whether or not the string contains properly matched brackets.
-
-You may assume the string contains only brackets and no other characters.
-The types of brackets are: ( ) [ ] { }
+Write a function, befitting_brackets, that takes in a string as an argument. 
+The function should return a boolean indicating whether or not the string contains correctly matched brackets.
+You may assume the string contains only characters: ( ) [ ] { }
 
 
 EXAMPLES:
 ================================================================================
-befittingBrackets("(){}[](())") # -> True
-befittingBrackets("({[]})") # -> True
-befittingBrackets("[][}") # -> False
-befittingBrackets("{[}]") # -> False
-befittingBrackets("((()") # -> False
+print(befitting_brackets('(){}[](())'))   # True
+print(befitting_brackets('({[]})'))       # True
+print(befitting_brackets('[]{}('))        # False
+print(befitting_brackets('{[]}({}'))      # False
+print(befitting_brackets('{}[]{}[]'))     # False
+print(befitting_brackets('{}[](){}[]'))   # True
+print(befitting_brackets('{}]()'))        # False
+print(befitting_brackets(''))             # True
+print(befitting_brackets('{[]()}'))       # False
 
 
 CONSTRAINTS:
 ================================================================================
-- String contains only bracket characters: ( ) [ ] { }
-- 0 <= len(string) <= 10^5
-
-Time: O(n) where n is the length of the string
-Space: O(n) in worst case for the stack
+n = length of string
+Time: O(n)
+Space: O(n)
 
 """
 
 # SOLUTION:
 # ================================================================================
-# [Add your Python solution here]
+
+def befitting_brackets(string):
+  stack = []
+  
+  brackets = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+  }
+  
+  for char in string:
+    if char in brackets:
+      stack.append(brackets[char])
+    else:
+      if stack and stack[-1] == char:
+        stack.pop()
+      else:
+        return False
+      
+  return len(stack) == 0
+
