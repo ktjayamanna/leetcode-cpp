@@ -4,13 +4,13 @@
 """
 PROBLEM DESCRIPTION:
 ================================================================================
-Write a function decompressBraces that takes in a compressed string as an argument.
-The function should return the decompressed version of the string.
+Write a function, decompress_braces, that takes in a compressed string as an argument. The function should return the string decompressed.
 
-The compression format is: number followed by braces containing the string to repeat.
-For example, "3{abc}" should become "abcabcabc".
+The compression format of the input string is 'n{sub_string}', where the sub_string within braces should be repeated n times.
 
-You can assume that the input only contains lowercase alphabetic characters and numeric digits.
+You may assume that every number n is guaranteed to be an integer between 1 through 9.
+
+You may assume that the input is valid and the decompressed string will only contain alphabetic characters.
 
 
 EXAMPLES:
@@ -32,8 +32,32 @@ CONSTRAINTS:
 Time: O(m) where m is the length of the decompressed string
 Space: O(m) for the result and stack space
 
+COMPLEXITY:
+================================================================================
+s = length of string
+m = count of brace pairs
+Time: O((9^m) * s)
+Space: O((9^m) * s)
+
 """
 
 # SOLUTION:
 # ================================================================================
-# [Add your Python solution here]
+def decompress_braces(string):
+  numbers = '123456789'
+  stack = []
+  for char in string:
+    if char in numbers:
+      stack.append(int(char))
+    else:
+      if char == '}':
+        segment = ''
+        while isinstance(stack[-1], str):
+          popped = stack.pop()
+          segment = popped + segment
+        num = stack.pop()
+        stack.append(segment * num)
+      elif char != '{':
+        stack.append(char)
+  return ''.join(stack)
+
