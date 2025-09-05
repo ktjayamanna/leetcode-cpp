@@ -4,32 +4,42 @@
 /*
 PROBLEM DESCRIPTION:
 ================================================================================
-Write a function pairs that takes in an array and a target sum as arguments.
-The function should return an array containing all pairs of elements that sum to the target.
+Write a function, isPrime, that takes in a number as an argument. The function should return a boolean indicating whether or not the given number is prime.
 
-The pairs may be returned in any order.
+A prime number is a number that is only divisible by two distinct numbers: 1 and itself.
+
+For example, 7 is a prime because it is only divisible by 1 and 7. For example, 6 is not a prime because it is divisible by 1, 2, 3, and 6.
+
+You can assume that the input number is a positive integer.
 
 
 EXAMPLES:
 ================================================================================
-pairs([3, 2, 5, 4, 1], 8) // -> [ [3, 5], [4, 4] ]
-pairs([4, 7, 9, 2, 5, 1], 5) // -> [ [4, 1], [2, 3] ]
-pairs([4, 7, 9, 2, 5, 1], 3) // -> [ [2, 1] ]
-pairs([1, 5, 3, 3, 4], 6) // -> [ [1, 5], [3, 3] ]
 
 
-CONSTRAINTS:
+Complexity:
 ================================================================================
-- Array elements are integers
-- Target is an integer
-- Return all unique pairs
-- Order of pairs doesn't matter
+n = input number
+Time: O(square_root(n))
+Space: O(1)
 
 */
 
-#include <iostream>
-#include <vector>
 
 // SOLUTION:
 // ================================================================================
-// [Add your C++ solution here]
+#include <math.h>
+
+bool isPrime(int n) {
+  if (n < 2) {
+    return false;
+  }
+  
+  for (int i = 2; i <= sqrt(n); i += 1) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
+  
+  return true;
+}
