@@ -15,6 +15,8 @@ You can assume that all characters are lowercase a-z.
 
 You can assume that the alphabet contains all 26 letters.
 
+(In lexical studies, shorter string is always before a longer string if all else is equal).
+
 EXAMPLES:
 ================================================================================
 alphabet = "abcdefghijklmnopqrstuvwxyz"
