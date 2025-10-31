@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -8,6 +9,12 @@ typedef struct
     int *vals;
     int *used;
 } Map;
+
+typedef enum
+{
+    NOT_FOUND,
+    FOUND
+} Status;
 
 Map *create()
 {
@@ -32,10 +39,15 @@ void put(Map *m, char *k, int v)
     m->used[i] = 1;
 }
 
-int get(Map *m, char *k)
+Status get(Map *m, char *k, int *v)
 {
     int i = hash(k);
-    return m->used[i] ? m->vals[i] : -1;
+    if (m->used[i])
+    {
+        *v = m->vals[i];
+        return FOUND;
+    }
+    return NOT_FOUND;
 }
 
 void del(Map *m, char *k)
