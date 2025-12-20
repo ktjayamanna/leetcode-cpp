@@ -46,7 +46,8 @@ Example 2 is not minimal because either cable (3,1) or (3,2) or (1,2) is not nee
 
 COMPLEXITY:
 ================================================================================
-
+Time: O(n + e)
+Space: O(n)
 
 """
 
